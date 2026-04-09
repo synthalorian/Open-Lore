@@ -17,13 +17,11 @@ class _WorldScreenState extends State<WorldScreen> {
   late WorldProject _project;
   EntryType? _filterType;
   String _searchQuery = '';
-  int _entryCounter = 0;
 
   @override
   void initState() {
     super.initState();
     _project = widget.project;
-    _entryCounter = _project.entries.length;
   }
 
   Future<void> _save() async {
@@ -56,9 +54,8 @@ class _WorldScreenState extends State<WorldScreen> {
   }
 
   void _addEntry() {
-    _entryCounter++;
     final entry = LoreEntry(
-      id: 'e$_entryCounter',
+      id: 'e${DateTime.now().millisecondsSinceEpoch}',
       title: 'New ${(_filterType ?? EntryType.note).label}',
       type: _filterType ?? EntryType.note,
     );

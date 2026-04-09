@@ -6,7 +6,7 @@ import '../models/lore_entry.dart';
 class WorldStorage {
   static String get _basePath {
     final home = Platform.environment['HOME'] ?? '.';
-    return p.join(home, '.lorekeeper', 'worlds');
+    return p.join(home, '.openlore', 'worlds');
   }
 
   static Future<void> _ensureDir() async {

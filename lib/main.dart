@@ -3,11 +3,11 @@ import 'theme/lore_theme.dart';
 import 'screens/project_library_screen.dart';
 
 void main() {
-  runApp(const LorekeeperApp());
+  runApp(const OpenLoreApp());
 }
 
-class LorekeeperApp extends StatelessWidget {
-  const LorekeeperApp({super.key});
+class OpenLoreApp extends StatelessWidget {
+  const OpenLoreApp({super.key});
 
   @override
   Widget build(BuildContext context) {

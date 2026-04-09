@@ -1,34 +1,39 @@
-# Lorekeeper
+# Open Lore
 
 Game world bible — structured worldbuilding with graph relationships.
 
-## What is Lorekeeper?
+## Features
 
-A structured worldbuilding tool for game devs and writers. Tracks characters, locations, factions, timelines, items, and their relationships as a graph. Markdown-based entries with bidirectional linking, and consistency checking.
-
-## Features (Planned)
-
-- **Entry types** — characters, locations, factions, items, events, creatures, concepts
-- **Markdown editor** — rich content with inline links to other entries
-- **Bidirectional links** — see all references to/from any entry
-- **Relationship graph** — visual node graph of your world's connections
-- **Properties system** — custom key-value metadata per entry
-- **Tag & search** — organize and find lore fast
-- **Timeline view** — chronological event visualization
-- **Consistency checker** — flag contradictions and orphan entries
+- **Entry types** — characters, locations, factions, items, events, creatures, concepts, notes
+- **Markdown editor** — rich content with title, tags, and custom properties
+- **Bidirectional links** — typed relationships (ally of, located in, member of, etc.) with automatic backlink tracking
+- **Properties system** — custom key-value metadata per entry (race, age, alignment, etc.)
+- **Tag & search** — full-text search across titles, content, and tags
+- **Type filtering** — sidebar with per-type counts and one-click filtering
+- **Project library** — manage multiple worlds, each saved as JSON
+- **Export** — copy full world JSON to clipboard for backup or sharing
+- **Dangling link cleanup** — deleting an entry automatically removes all links pointing to it
 
 ## Tech Stack
 
-- **Flutter** (cross-platform: desktop, mobile, web)
-- **Markdown** for entry content
-- **Graph data model** for relationships
+- **Flutter** (cross-platform: Linux, macOS, Windows, web)
+- **JSON file storage** — worlds saved to `~/.openlore/worlds/`
+- **Graph data model** — entries + typed directional links with backlink resolution
 
 ## Getting Started
 
 ```bash
 flutter pub get
-flutter run
+flutter run -d linux
 ```
+
+## Build
+
+```bash
+flutter build linux --release
+```
+
+Binary lands in `build/linux/x64/release/bundle/open-lore`.
 
 ## License
 

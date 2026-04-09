@@ -110,7 +110,7 @@ class _ProjectLibraryScreenState extends State<ProjectLibraryScreen> {
                 const Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Text('LOREKEEPER', style: TextStyle(color: LoreTheme.gold, fontSize: 22,
+                    Text('OPEN LORE', style: TextStyle(color: LoreTheme.gold, fontSize: 22,
                         fontWeight: FontWeight.bold, letterSpacing: 4)),
                     Text('Game World Bible', style: TextStyle(color: LoreTheme.textSecondary, fontSize: 12)),
                   ],
