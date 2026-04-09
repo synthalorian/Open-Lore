@@ -12,7 +12,7 @@ class LorekeeperApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Lorekeeper',
+      title: 'Open Lore',
       debugShowCheckedModeBanner: false,
       theme: LoreTheme.darkTheme,
       home: const ProjectLibraryScreen(),

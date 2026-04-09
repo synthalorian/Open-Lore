@@ -1,5 +1,5 @@
 import 'package:flutter_test/flutter_test.dart';
-import 'package:lorekeeper/models/lore_entry.dart';
+import 'package:open_lore/models/lore_entry.dart';
 
 void main() {
   test('LoreEntry JSON roundtrip', () {
