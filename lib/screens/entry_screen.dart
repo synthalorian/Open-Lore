@@ -215,7 +215,7 @@ class _EntryScreenState extends State<EntryScreen> {
                       label: Text(tag, style: const TextStyle(fontSize: 11)),
                       deleteIcon: const Icon(Icons.close, size: 14),
                       onDeleted: () { setState(() => entry.tags.remove(tag)); _save(); },
-                      backgroundColor: entry.type.color.withOpacity(0.1),
+                      backgroundColor: entry.type.color.withValues(alpha: 0.1),
                       side: BorderSide.none, padding: EdgeInsets.zero,
                       materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
                     )),
@@ -255,7 +255,7 @@ class _EntryScreenState extends State<EntryScreen> {
                 child: Container(
                   padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 2),
                   decoration: BoxDecoration(
-                    color: entry.type.color.withOpacity(0.15),
+                    color: entry.type.color.withValues(alpha: 0.15),
                     borderRadius: BorderRadius.circular(4),
                   ),
                   child: Row(mainAxisSize: MainAxisSize.min, children: [
@@ -378,7 +378,7 @@ class _EditablePropertyRow extends StatelessWidget {
             style: const TextStyle(color: LoreTheme.textSecondary, fontSize: 11))),
         Expanded(child: Text(value, style: const TextStyle(color: LoreTheme.textPrimary, fontSize: 11))),
         GestureDetector(onTap: onDelete,
-            child: Icon(Icons.close, size: 12, color: LoreTheme.textSecondary.withOpacity(0.5))),
+            child: Icon(Icons.close, size: 12, color: LoreTheme.textSecondary.withValues(alpha: 0.5))),
       ]),
     );
   }
@@ -412,7 +412,7 @@ class _LinkRow extends StatelessWidget {
           ),
           if (onDelete != null)
             GestureDetector(onTap: onDelete,
-                child: Icon(Icons.close, size: 12, color: LoreTheme.textSecondary.withOpacity(0.5))),
+                child: Icon(Icons.close, size: 12, color: LoreTheme.textSecondary.withValues(alpha: 0.5))),
         ]),
       ),
     );

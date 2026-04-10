@@ -28,7 +28,7 @@ class LoreTheme {
           foregroundColor: parchment,
           elevation: 0,
         ),
-        cardTheme: CardTheme(
+        cardTheme: CardThemeData(
           color: surface,
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(8),

@@ -131,7 +131,7 @@ class _ProjectLibraryScreenState extends State<ProjectLibraryScreen> {
                 ? const Center(child: CircularProgressIndicator(color: LoreTheme.gold))
                 : (_worlds == null || _worlds!.isEmpty)
                     ? Center(child: Column(mainAxisSize: MainAxisSize.min, children: [
-                        Icon(Icons.auto_stories, size: 72, color: LoreTheme.gold.withOpacity(0.3)),
+                        Icon(Icons.auto_stories, size: 72, color: LoreTheme.gold.withValues(alpha: 0.3)),
                         const SizedBox(height: 20),
                         const Text('No worlds yet', style: TextStyle(color: LoreTheme.textSecondary, fontSize: 20)),
                         const SizedBox(height: 24),
@@ -188,7 +188,7 @@ class _WorldCard extends StatelessWidget {
             ],
             const Spacer(),
             Container(padding: const EdgeInsets.symmetric(horizontal: 6, vertical: 2),
-                decoration: BoxDecoration(color: LoreTheme.gold.withOpacity(0.1), borderRadius: BorderRadius.circular(3)),
+                decoration: BoxDecoration(color: LoreTheme.gold.withValues(alpha: 0.1), borderRadius: BorderRadius.circular(3)),
                 child: Text('${summary.entryCount} entries', style: const TextStyle(color: LoreTheme.gold, fontSize: 10))),
             const SizedBox(height: 4),
             Text(_relativeDate(summary.modifiedAt), style: const TextStyle(color: LoreTheme.textSecondary, fontSize: 10)),
