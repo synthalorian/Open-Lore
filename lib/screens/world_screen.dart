@@ -201,7 +201,7 @@ class _WorldScreenState extends State<WorldScreen> {
                 Expanded(
                   child: _filteredEntries.isEmpty
                       ? Center(child: Column(mainAxisSize: MainAxisSize.min, children: [
-                          Icon(_filterType?.icon ?? Icons.book, size: 64, color: LoreTheme.textSecondary.withOpacity(0.4)),
+                          Icon(_filterType?.icon ?? Icons.book, size: 64, color: LoreTheme.textSecondary.withValues(alpha: 0.4)),
                           const SizedBox(height: 16),
                           const Text('No entries', style: TextStyle(color: LoreTheme.textSecondary, fontSize: 18)),
                         ]))
@@ -248,7 +248,7 @@ class _FilterItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Material(
-      color: selected ? color.withOpacity(0.1) : Colors.transparent,
+      color: selected ? color.withValues(alpha: 0.1) : Colors.transparent,
       child: InkWell(
         onTap: onTap,
         child: Padding(
@@ -286,7 +286,7 @@ class _EntryCard extends StatelessWidget {
           child: Row(children: [
             Container(
               width: 36, height: 36,
-              decoration: BoxDecoration(color: entry.type.color.withOpacity(0.15), borderRadius: BorderRadius.circular(6)),
+              decoration: BoxDecoration(color: entry.type.color.withValues(alpha: 0.15), borderRadius: BorderRadius.circular(6)),
               child: Icon(entry.type.icon, color: entry.type.color, size: 18),
             ),
             const SizedBox(width: 14),
@@ -304,13 +304,13 @@ class _EntryCard extends StatelessWidget {
                     ...entry.tags.take(3).map((tag) => Container(
                           margin: const EdgeInsets.only(right: 4),
                           padding: const EdgeInsets.symmetric(horizontal: 6, vertical: 1),
-                          decoration: BoxDecoration(color: entry.type.color.withOpacity(0.1), borderRadius: BorderRadius.circular(3)),
+                          decoration: BoxDecoration(color: entry.type.color.withValues(alpha: 0.1), borderRadius: BorderRadius.circular(3)),
                           child: Text(tag, style: TextStyle(color: entry.type.color, fontSize: 10)),
                         )),
                     if (linkCount > 0) ...[
                       const SizedBox(width: 4),
-                      Icon(Icons.link, size: 12, color: LoreTheme.textSecondary.withOpacity(0.6)),
-                      Text(' $linkCount', style: TextStyle(color: LoreTheme.textSecondary.withOpacity(0.6), fontSize: 10)),
+                      Icon(Icons.link, size: 12, color: LoreTheme.textSecondary.withValues(alpha: 0.6)),
+                      Text(' $linkCount', style: TextStyle(color: LoreTheme.textSecondary.withValues(alpha: 0.6), fontSize: 10)),
                     ],
                   ]),
                 ],
