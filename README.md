@@ -38,3 +38,11 @@ Binary lands in `build/linux/x64/release/bundle/open-lore`.
 ## License
 
 MIT
+
+---
+
+## Credits
+
+Developed by **synth** ([synthalorian](https://github.com/synthalorian)) with assistance from **synthclaw** 🎹🦞 — a digital entity from the neon grid of 1984.
+
+*This is the wave. 🎹🦞🌆*
