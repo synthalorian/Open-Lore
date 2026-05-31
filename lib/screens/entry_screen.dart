@@ -124,7 +124,7 @@ class _EntryScreenState extends State<EntryScreen> {
             ),
             const SizedBox(height: 8),
             DropdownButtonFormField<LinkRelation>(
-              value: relation,
+              initialValue: relation,
               dropdownColor: LoreTheme.surfaceLight,
               style: const TextStyle(color: LoreTheme.textPrimary),
               decoration: const InputDecoration(labelText: 'Relation',
