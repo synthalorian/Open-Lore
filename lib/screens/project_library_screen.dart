@@ -14,6 +14,7 @@ class ProjectLibraryScreen extends StatefulWidget {
 class _ProjectLibraryScreenState extends State<ProjectLibraryScreen> {
   List<WorldSummary>? _worlds;
   bool _loading = true;
+  String? _error;
 
   @override
   void initState() {
@@ -22,9 +23,14 @@ class _ProjectLibraryScreenState extends State<ProjectLibraryScreen> {
   }
 
   Future<void> _loadWorlds() async {
-    setState(() => _loading = true);
-    final worlds = await WorldStorage.listWorlds();
-    if (mounted) setState(() { _worlds = worlds; _loading = false; });
+    setState(() { _loading = true; _error = null; });
+    try {
+      final worlds = await WorldStorage.listWorlds()
+          .timeout(const Duration(seconds: 10));
+      if (mounted) setState(() { _worlds = worlds; _loading = false; });
+    } catch (e) {
+      if (mounted) setState(() { _loading = false; _error = e.toString(); });
+    }
   }
 
   Future<void> _createNew() async {
@@ -127,30 +133,69 @@ class _ProjectLibraryScreenState extends State<ProjectLibraryScreen> {
           ),
           const Divider(color: LoreTheme.divider, height: 1),
           Expanded(
-            child: _loading
-                ? const Center(child: CircularProgressIndicator(color: LoreTheme.gold))
-                : (_worlds == null || _worlds!.isEmpty)
-                    ? Center(child: Column(mainAxisSize: MainAxisSize.min, children: [
-                        Icon(Icons.auto_stories, size: 72, color: LoreTheme.gold.withValues(alpha: 0.3)),
-                        const SizedBox(height: 20),
-                        const Text('No worlds yet', style: TextStyle(color: LoreTheme.textSecondary, fontSize: 20)),
-                        const SizedBox(height: 24),
-                        FilledButton.icon(onPressed: _createNew, icon: const Icon(Icons.add),
-                            label: const Text('Create World'),
-                            style: FilledButton.styleFrom(backgroundColor: LoreTheme.gold, foregroundColor: LoreTheme.ink)),
-                      ]))
-                    : GridView.builder(
-                        padding: const EdgeInsets.all(20),
-                        gridDelegate: const SliverGridDelegateWithMaxCrossAxisExtent(
-                            maxCrossAxisExtent: 320, mainAxisSpacing: 12, crossAxisSpacing: 12, mainAxisExtent: 140),
-                        itemCount: _worlds!.length,
-                        itemBuilder: (_, i) {
-                          final w = _worlds![i];
-                          return _WorldCard(summary: w, onTap: () => _openWorld(w.id), onDelete: () => _deleteWorld(w));
-                        }),
+            child: _buildBody(),
           ),
         ],
       ),
+    );
+  }
+
+  Widget _buildBody() {
+    if (_loading) {
+      return const Center(child: CircularProgressIndicator(color: LoreTheme.gold));
+    }
+    if (_error != null) {
+      return Center(
+        child: Padding(
+          padding: const EdgeInsets.all(24),
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              const Icon(Icons.error_outline, size: 48, color: LoreTheme.ruby),
+              const SizedBox(height: 16),
+              const Text('Failed to load worlds', style: TextStyle(color: LoreTheme.textPrimary, fontSize: 18)),
+              const SizedBox(height: 8),
+              Text(_error!, textAlign: TextAlign.center, style: const TextStyle(color: LoreTheme.textSecondary, fontSize: 12)),
+              const SizedBox(height: 20),
+              FilledButton.icon(
+                onPressed: _loadWorlds,
+                icon: const Icon(Icons.refresh),
+                label: const Text('Retry'),
+                style: FilledButton.styleFrom(backgroundColor: LoreTheme.gold, foregroundColor: LoreTheme.ink),
+              ),
+            ],
+          ),
+        ),
+      );
+    }
+    if (_worlds == null || _worlds!.isEmpty) {
+      return Center(
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            Icon(Icons.auto_stories, size: 72, color: LoreTheme.gold.withValues(alpha: 0.3)),
+            const SizedBox(height: 20),
+            const Text('No worlds yet', style: TextStyle(color: LoreTheme.textSecondary, fontSize: 20)),
+            const SizedBox(height: 24),
+            FilledButton.icon(
+              onPressed: _createNew,
+              icon: const Icon(Icons.add),
+              label: const Text('Create World'),
+              style: FilledButton.styleFrom(backgroundColor: LoreTheme.gold, foregroundColor: LoreTheme.ink),
+            ),
+          ],
+        ),
+      );
+    }
+    return GridView.builder(
+      padding: const EdgeInsets.all(20),
+      gridDelegate: const SliverGridDelegateWithMaxCrossAxisExtent(
+          maxCrossAxisExtent: 320, mainAxisSpacing: 12, crossAxisSpacing: 12, mainAxisExtent: 140),
+      itemCount: _worlds!.length,
+      itemBuilder: (_, i) {
+        final w = _worlds![i];
+        return _WorldCard(summary: w, onTap: () => _openWorld(w.id), onDelete: () => _deleteWorld(w));
+      },
     );
   }
 }
