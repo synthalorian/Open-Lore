@@ -1,30 +1,50 @@
 import 'dart:convert';
 import 'dart:io';
 import 'package:path/path.dart' as p;
+import 'package:path_provider/path_provider.dart';
 import '../models/lore_entry.dart';
 
 class WorldStorage {
-  static String get _basePath {
-    final home = Platform.environment['HOME'] ?? '.';
-    return p.join(home, '.openlore', 'worlds');
+  static String? _cachedBasePath;
+
+  static Future<String> get _basePath async {
+    if (_cachedBasePath != null) return _cachedBasePath!;
+
+    String base;
+    if (Platform.isAndroid || Platform.isIOS) {
+      final dir = await getApplicationDocumentsDirectory();
+      base = p.join(dir.path, 'openlore', 'worlds');
+    } else if (Platform.isLinux || Platform.isMacOS || Platform.isWindows) {
+      final home = Platform.environment['HOME']
+          ?? Platform.environment['USERPROFILE']
+          ?? '.';
+      base = p.join(home, '.openlore', 'worlds');
+    } else {
+      final dir = await getApplicationDocumentsDirectory();
+      base = p.join(dir.path, 'openlore', 'worlds');
+    }
+
+    _cachedBasePath = base;
+    return base;
   }
 
   static Future<void> _ensureDir() async {
-    final dir = Directory(_basePath);
+    final dir = Directory(await _basePath);
     if (!await dir.exists()) await dir.create(recursive: true);
   }
 
-  static String _filePath(String id) => p.join(_basePath, '$id.json');
+  static Future<String> _filePath(String id) async =>
+      p.join(await _basePath, '$id.json');
 
   static Future<void> save(WorldProject project) async {
     await _ensureDir();
     project.modifiedAt = DateTime.now();
     final json = const JsonEncoder.withIndent('  ').convert(project.toJson());
-    await File(_filePath(project.id)).writeAsString(json);
+    await File(await _filePath(project.id)).writeAsString(json);
   }
 
   static Future<WorldProject?> load(String id) async {
-    final file = File(_filePath(id));
+    final file = File(await _filePath(id));
     if (!await file.exists()) return null;
     final json = jsonDecode(await file.readAsString()) as Map<String, dynamic>;
     return WorldProject.fromJson(json);
@@ -32,7 +52,7 @@ class WorldStorage {
 
   static Future<List<WorldSummary>> listWorlds() async {
     await _ensureDir();
-    final dir = Directory(_basePath);
+    final dir = Directory(await _basePath);
     final summaries = <WorldSummary>[];
     await for (final entity in dir.list()) {
       if (entity is File && entity.path.endsWith('.json')) {
@@ -53,7 +73,7 @@ class WorldStorage {
   }
 
   static Future<void> delete(String id) async {
-    final file = File(_filePath(id));
+    final file = File(await _filePath(id));
     if (await file.exists()) await file.delete();
   }
 
