@@ -29,7 +29,7 @@
 - Migrated from `Lorekeeper` to `Open Lore` open-source branding
 - Updated Android Gradle plugin and wrapper for modern toolchain compatibility
 - Fixed deprecated Flutter API usage (`DropdownButtonFormField.value` → `initialValue`)
-- Rebranded assistant credit: synthclaw → synthshark
+- Rebranded assistant credit: synthclaw → synthclaw
 
 ---
 
@@ -41,4 +41,4 @@ Initial release as `Lorekeeper` — a private game worldbuilding tool.
 
 ---
 
-Made by **synth** ([synthalorian](https://github.com/synthalorian)) with **synthshark** 🎹🦈
+Made by **synth** ([synthalorian](https://github.com/synthalorian)) with **synthclaw** 🎹🦈
