@@ -1,5 +1,9 @@
 # Open Lore
 
+![License](https://img.shields.io/badge/License-GPLv3-blue)
+![Language](https://img.shields.io/badge/Language-Dart-blue)
+![Platform](https://img.shields.io/badge/Platform-Linux-blue)
+
 Game world bible — structured worldbuilding with graph relationships.
 
 ## Features
