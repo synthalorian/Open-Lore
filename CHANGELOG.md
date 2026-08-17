@@ -41,4 +41,4 @@ Initial release as `Lorekeeper` — a private game worldbuilding tool.
 
 ---
 
-Made by **synthalorian 🎹🤺** ([synthalorian](https://github.com/synthalorian)) with **synthclaw** 🎹🦈
+Made by **synth** ([synthalorian](https://github.com/synthalorian)) with **synthclaw** 🎹🦈
