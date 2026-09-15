@@ -1,4 +1,4 @@
-package com.synthclaw.lorekeeper
+package com.synthalorian.lorekeeper
 
 import io.flutter.embedding.android.FlutterActivity
 
