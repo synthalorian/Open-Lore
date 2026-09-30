@@ -29,7 +29,6 @@
 - Migrated from `Lorekeeper` to `Open Lore` open-source branding
 - Updated Android Gradle plugin and wrapper for modern toolchain compatibility
 - Fixed deprecated Flutter API usage (`DropdownButtonFormField.value` → `initialValue`)
-- Rebranded assistant credit: blackclaw → blackclaw
 
 ---
 
@@ -41,4 +40,4 @@ Initial release as `Lorekeeper` — a private game worldbuilding tool.
 
 ---
 
-Made by **synth** with **blackclaw** 🎹🦈
+Made by **synth**
