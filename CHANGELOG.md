@@ -40,4 +40,3 @@ Initial release as `Lorekeeper` — a private game worldbuilding tool.
 
 ---
 
-Made by **synth**

@@ -47,7 +47,6 @@ MIT
 
 ## Credits
 
-Developed by **synth**.
 
 *This is the wave. 🎹🦈🌆*
 
