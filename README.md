@@ -1,3 +1,5 @@
+![Open-Lore](.github/preview.png)
+
 # Open Lore
 
 ![License](https://img.shields.io/badge/License-Apache-2.0-blue)
